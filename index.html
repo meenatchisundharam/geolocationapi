@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Insert Data with Geolocation</title>
+</head>
+<body>
+    <form class="myform" action="insert_data.php" method="post" autocomplete="off">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required value=""><br>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required value=""><br>
+        
+        <!-- Hidden fields for latitude and longitude -->
+        <input type="hidden" name="latitude" id="latitude" value="">
+        <input type="hidden" name="longitude" id="longitude" value="">
+        
+        <button type="submit" name="submit">Submit</button>
+    </form>
+
+    <script>
+        navigator.geolocation.getCurrentPosition(function(position) {
+            // Set geolocation values in hidden fields
+            document.getElementById("latitude").value = position.coords.latitude;
+            document.getElementById("longitude").value = position.coords.longitude;
+        });
+    </script>
+</body>
+</html>
